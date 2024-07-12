@@ -2,6 +2,11 @@ package io.github.xlnk.telegramcopy.domain.entity.model
 
 import java.time.ZonedDateTime
 
+/**
+ * Нужно последнее сообщение.
+ * Чаты должны сортироваться по дате последнего сообщения
+ */
+
 sealed class ImBaseChat : WithOptionalIcon {
     abstract val id: EntityId
     abstract val muteUntil: ZonedDateTime?
