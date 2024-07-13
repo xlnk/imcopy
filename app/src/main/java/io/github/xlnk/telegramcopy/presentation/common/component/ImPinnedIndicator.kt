@@ -19,8 +19,8 @@ import io.github.xlnk.telegramcopy.presentation.common.theme.AppTheme
 
 @Composable
 fun ImPinnedIndicator(
+    size: Dp,
     modifier: Modifier = Modifier,
-    size: Dp = 16.dp
 ) {
     val color = MaterialTheme.colorScheme.onSurfaceVariant
     Box(
@@ -42,6 +42,6 @@ fun ImPinnedIndicator(
 @Composable
 private fun ImPinnedIndicatorPreview() {
     AppTheme {
-        ImPinnedIndicator()
+        ImPinnedIndicator(20.dp)
     }
 }

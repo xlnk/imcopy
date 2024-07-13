@@ -3,6 +3,7 @@ package io.github.xlnk.telegramcopy.presentation.chats
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -14,9 +15,11 @@ import io.github.xlnk.telegramcopy.presentation.chats.component.ChatsTopAppBar
 import io.github.xlnk.telegramcopy.presentation.chats.component.preview.ChatsUiPreviewParameterProvider
 import io.github.xlnk.telegramcopy.presentation.chats.model.ChatUi
 import io.github.xlnk.telegramcopy.presentation.common.component.CommonScreenComponent
+import io.github.xlnk.telegramcopy.presentation.common.model.ImSnackbarVisuals
 import io.github.xlnk.telegramcopy.presentation.common.theme.AppTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.launch
 
 @Composable
 fun ChatsScreen(
@@ -24,11 +27,17 @@ fun ChatsScreen(
     onGoToChatRequest: (EntityId) -> Unit,
     selfViewModel: ChatsScreenViewModel = viewModel()
 ) {
+    val composeCoroutineScope = rememberCoroutineScope()
+
     ChatsScreenContent(
         snackbarState = snackbarState,
         chats = selfViewModel.chats.collectAsStateWithLifecycle().value,
         onGoToChatRequest = { onGoToChatRequest(it.id) },
-        onSearchRequest = {},
+        onSearchRequest = {
+            composeCoroutineScope.launch {
+                snackbarState.showSnackbar(ImSnackbarVisuals.NotImplemented)
+            }
+        },
     )
 }
 

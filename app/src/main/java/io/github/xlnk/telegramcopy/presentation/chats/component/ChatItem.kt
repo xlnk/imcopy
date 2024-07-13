@@ -31,6 +31,7 @@ import io.github.xlnk.telegramcopy.presentation.common.component.ImIconComponent
 import io.github.xlnk.telegramcopy.presentation.common.component.ImMuteIndicator
 import io.github.xlnk.telegramcopy.presentation.common.component.ImPinnedIndicator
 import io.github.xlnk.telegramcopy.presentation.common.component.UnreadCountComponent
+import io.github.xlnk.telegramcopy.presentation.common.extensions.toDp
 import io.github.xlnk.telegramcopy.presentation.common.model.Sender
 import io.github.xlnk.telegramcopy.presentation.common.theme.AppTheme
 
@@ -62,7 +63,9 @@ internal fun ChatItem(
             ) {
                 Spacer(Modifier)
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(end = 8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(end = 8.dp),
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -100,7 +103,7 @@ internal fun ChatItem(
                             modifier = Modifier.padding(start = 4.dp)
                         )
                     } else if (chat.isPinned) {
-                        ImPinnedIndicator()
+                        ImPinnedIndicator(20.sp.toDp())
                     }
                 }
                 HorizontalDivider()
@@ -133,6 +136,7 @@ private fun ChatItemMessage(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.weight(1f)
         )
     }
 }
