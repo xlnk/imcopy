@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">TelegramCopy</string>
+    <string name="app_name">ImCopy</string>
+    <string name="sender_you_text">You</string>
 </resources>

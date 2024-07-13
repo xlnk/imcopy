@@ -19,6 +19,7 @@ internal fun ImDateComponent(
     Text(
         text = DateUtils.humanizeDate(lastUpdated),
         modifier = modifier,
+        maxLines = 1,
     )
 }
 

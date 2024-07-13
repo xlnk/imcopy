@@ -1,10 +1,10 @@
 package io.github.xlnk.telegramcopy.presentation.chats
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.xlnk.telegramcopy.presentation.chats.component.preview.chatFirst
+import io.github.xlnk.telegramcopy.presentation.chats.component.preview.chatFourth
 import io.github.xlnk.telegramcopy.presentation.chats.component.preview.chatSecond
 import io.github.xlnk.telegramcopy.presentation.chats.component.preview.chatThird
 import io.github.xlnk.telegramcopy.presentation.chats.model.ChatUi
@@ -12,7 +12,6 @@ import io.github.xlnk.telegramcopy.presentation.common.utils.UiConstants.UI_FLOW
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
@@ -27,6 +26,7 @@ class ChatsScreenViewModel : ViewModel() {
             chatFirst,
             chatSecond,
             chatThird,
+            chatFourth,
         ))
     }.stateIn(
         viewModelScope,

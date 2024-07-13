@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun CommonScreenComponent(
     snackbarState: SnackbarHostState,
+    topBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable (paddingsModifier: Modifier) -> Unit,
 ) {
@@ -18,9 +19,7 @@ fun CommonScreenComponent(
         snackbarHost = {
             SnackbarHost(hostState = snackbarState)
         },
-        topBar = {
-
-        }
+        topBar = topBar,
     ) { innerPaddings ->
         content(Modifier.padding(innerPaddings))
     }

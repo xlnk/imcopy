@@ -11,3 +11,9 @@ import androidx.compose.ui.unit.TextUnit
 fun Dp.toSp(): TextUnit = with(LocalDensity.current) {
     this@toSp.toSp()
 }
+
+@Composable
+@ReadOnlyComposable
+fun TextUnit.toDp(): Dp = with(LocalDensity.current) {
+    this@toDp.toDp()
+}
