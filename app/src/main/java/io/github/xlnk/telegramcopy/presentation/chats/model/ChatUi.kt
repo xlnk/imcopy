@@ -18,4 +18,5 @@ data class ChatUi(
     val unreadMessagesCount: Int,
     val lastUpdated: LocalDateTime,
     val muted: Boolean,
+    val lastMessageSender: String? = null,
 )

@@ -10,19 +10,19 @@ import kotlinx.collections.immutable.persistentListOf
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
 
-private val chatFirst = ChatUi(
+internal val chatFirst = ChatUi(
     EntityId("1"),
     IconPlaceholderUi(Color.Red, Color(0xFFF00000), "UO"),
     null,
     "User One",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     true,
-    10,
+    0,
     LocalDateTime.now(),
     true,
 )
 
-private val chatSecond = ChatUi(
+internal val chatSecond = ChatUi(
     EntityId("2"),
     IconPlaceholderUi(Color.Blue, Color(0xFF0000F0), "US"),
     null,
@@ -34,13 +34,27 @@ private val chatSecond = ChatUi(
     false,
 )
 
+internal val chatThird = ChatUi(
+    EntityId("3"),
+    IconPlaceholderUi(Color.Green, Color(0xFF00F000), "US"),
+    null,
+    "Group title",
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    false,
+    999,
+    LocalDateTime.now().minusDays(2),
+    false,
+    lastMessageSender = "User"
+)
+
 class ChatUiPreviewParameterProvider : CollectionPreviewParameterProvider<ChatUi>(
     listOf(
         chatFirst,
-        chatSecond
+        chatSecond,
+        chatThird
     )
 )
 
 class ChatsUiPreviewParameterProvider : CollectionPreviewParameterProvider<ImmutableList<ChatUi>>(
-    listOf(persistentListOf(chatFirst, chatSecond))
+    listOf(persistentListOf(chatFirst, chatSecond, chatThird))
 )

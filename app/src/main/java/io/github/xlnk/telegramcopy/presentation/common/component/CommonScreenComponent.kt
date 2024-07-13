@@ -10,9 +10,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun CommonScreenComponent(
     snackbarState: SnackbarHostState,
-    title: String,
     modifier: Modifier = Modifier,
-    onBackRequest: (() -> Unit)? = null,
     content: @Composable (paddingsModifier: Modifier) -> Unit,
 ) {
     Scaffold(
