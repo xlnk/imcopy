@@ -12,6 +12,7 @@ fun CommonScreenComponent(
     snackbarState: SnackbarHostState,
     topBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
+    floatingActionButton: @Composable () -> Unit = {},
     content: @Composable (paddingsModifier: Modifier) -> Unit,
 ) {
     Scaffold(
@@ -20,6 +21,7 @@ fun CommonScreenComponent(
             SnackbarHost(hostState = snackbarState)
         },
         topBar = topBar,
+        floatingActionButton = floatingActionButton,
     ) { innerPaddings ->
         content(Modifier.padding(innerPaddings))
     }

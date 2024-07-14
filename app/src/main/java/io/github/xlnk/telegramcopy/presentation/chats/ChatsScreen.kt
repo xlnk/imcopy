@@ -10,11 +10,13 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.xlnk.telegramcopy.domain.entity.model.EntityId
+import io.github.xlnk.telegramcopy.presentation.chats.component.NewMessageFloatingButton
 import io.github.xlnk.telegramcopy.presentation.chats.component.ChatsListComponent
 import io.github.xlnk.telegramcopy.presentation.chats.component.ChatsTopAppBar
 import io.github.xlnk.telegramcopy.presentation.chats.component.preview.ChatsUiPreviewParameterProvider
 import io.github.xlnk.telegramcopy.presentation.chats.model.ChatUi
 import io.github.xlnk.telegramcopy.presentation.common.component.CommonScreenComponent
+import io.github.xlnk.telegramcopy.presentation.common.extensions.showNotImplementedSnackbar
 import io.github.xlnk.telegramcopy.presentation.common.model.ImSnackbarVisuals
 import io.github.xlnk.telegramcopy.presentation.common.theme.AppTheme
 import kotlinx.collections.immutable.ImmutableList
@@ -25,6 +27,7 @@ import kotlinx.coroutines.launch
 fun ChatsScreen(
     snackbarState: SnackbarHostState,
     onGoToChatRequest: (EntityId) -> Unit,
+    onGoToNewMessageRequest: () -> Unit,
     selfViewModel: ChatsScreenViewModel = viewModel()
 ) {
     val composeCoroutineScope = rememberCoroutineScope()
@@ -34,10 +37,9 @@ fun ChatsScreen(
         chats = selfViewModel.chats.collectAsStateWithLifecycle().value,
         onGoToChatRequest = { onGoToChatRequest(it.id) },
         onSearchRequest = {
-            composeCoroutineScope.launch {
-                snackbarState.showSnackbar(ImSnackbarVisuals.NotImplemented)
-            }
+            snackbarState.showNotImplementedSnackbar(composeCoroutineScope)
         },
+        onGoToNewMessageRequest = onGoToNewMessageRequest,
     )
 }
 
@@ -47,12 +49,14 @@ private fun ChatsScreenContent(
     chats: ImmutableList<ChatUi>?,
     onGoToChatRequest: (ChatUi) -> Unit,
     onSearchRequest: () -> Unit,
+    onGoToNewMessageRequest: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     CommonScreenComponent(
         snackbarState = snackbarState,
         topBar = { ChatsTopAppBar(onSearchRequest) },
         modifier = modifier,
+        floatingActionButton = { NewMessageFloatingButton(onGoToNewMessageRequest) }
     ) { paddingsModifier ->
         ChatsListComponent(
             chats = chats ?: persistentListOf(),
@@ -71,6 +75,7 @@ private fun ChatsScreenContentPreview(
         ChatsScreenContent(
             snackbarState = remember { SnackbarHostState() },
             chats = chats,
+            {},
             {},
             {},
         )

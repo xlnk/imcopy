@@ -7,8 +7,10 @@ import androidx.compose.material.icons.filled.VolumeOff
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import io.github.xlnk.telegramcopy.R
 
 @Composable
 fun ImMuteIndicator(
@@ -17,7 +19,7 @@ fun ImMuteIndicator(
 ) {
     Icon(
         imageVector = Icons.AutoMirrored.Filled.VolumeOff,
-        contentDescription = null,
+        contentDescription = stringResource(R.string.muted_description_text),
         modifier = modifier.size(size),
     )
 }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ImCopy</string>
     <string name="sender_you_text">You</string>
+    <string name="not_implemented_text">Not implemented</string>
+    <string name="new_message_description_text">New message</string>
+    <string name="muted_description_text">Muted</string>
+    <string name="pinned_description_text">Pined</string>
 </resources>
