@@ -25,21 +25,21 @@ fun ChatsListPagingComponent(
     modifier: Modifier = Modifier,
 ) {
     val chats = chatsPagingItems.collectAsLazyPagingItems()
-    LazyColumn(
-        modifier = modifier.fillMaxWidth(),
-    ) {
-        if (chats.loadState.refresh == LoadState.Loading) {
-            item("loading", "loading") {
-                LoadingIndicator(48.dp, modifier = Modifier.fillMaxSize())
+
+    if (chats.loadState.refresh == LoadState.Loading) {
+        LoadingIndicator(48.dp, modifier = modifier.fillMaxSize())
+    } else {
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+        ) {
+            items(
+                count = chats.itemCount,
+                key = chats.itemKey { it.id.value },
+                contentType = { "item" }
+            ) { index ->
+                val chat = chats[index] ?: return@items
+                ChatItem(chat = chat, onSelect = onSelectChat)
             }
-        }
-        items(
-            count = chats.itemCount,
-            key = chats.itemKey { it.id.value },
-            contentType = { "item" }
-        ) { index ->
-            val chat = chats[index] ?: return@items
-            ChatItem(chat = chat, onSelect = onSelectChat)
         }
     }
 }
