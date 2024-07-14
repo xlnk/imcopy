@@ -2,14 +2,10 @@ package io.github.xlnk.telegramcopy.presentation.chats.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -42,7 +37,7 @@ internal fun ChatItem(
     onSelect: (ChatUi) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val background = if (chat.isPinned) {
+    val background = if (chat.pinned) {
         MaterialTheme.colorScheme.surfaceVariant
     } else {
         MaterialTheme.colorScheme.surface
@@ -91,7 +86,7 @@ internal fun ChatItem(
                             modifier = Modifier.padding(start = 4.dp, end = 8.dp)
                         )
                     }
-                    ImDateComponent(chat.lastUpdated,)
+                    ImDateComponent(chat.lastMessageUpdated,)
                 }
                 Row(
                     modifier = Modifier
@@ -109,10 +104,10 @@ internal fun ChatItem(
                         UnreadCountComponent(
                             count = chat.unreadMessagesCount,
                             size = 20.sp,
-                            isHighlighted = chat.isPinned,
+                            isHighlighted = chat.pinned,
                             modifier = Modifier.padding(start = 4.dp)
                         )
-                    } else if (chat.isPinned) {
+                    } else if (chat.pinned) {
                         ImPinnedIndicator(20.sp.toDp())
                     }
                 }
