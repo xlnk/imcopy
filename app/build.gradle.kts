@@ -69,6 +69,8 @@ dependencies {
     implementation(libs.jetbrains.kotlinx.collections.immutable)
     implementation(libs.jetbrains.kotlinx.coroutines.core)
     implementation(libs.jetbrains.kotlinx.coroutines.android)
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

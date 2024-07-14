@@ -7,21 +7,18 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.PagingData
 import io.github.xlnk.telegramcopy.domain.entity.model.EntityId
 import io.github.xlnk.telegramcopy.presentation.chats.component.NewMessageFloatingButton
-import io.github.xlnk.telegramcopy.presentation.chats.component.ChatsListComponent
+import io.github.xlnk.telegramcopy.presentation.chats.component.ChatsListPagingComponent
 import io.github.xlnk.telegramcopy.presentation.chats.component.ChatsTopAppBar
-import io.github.xlnk.telegramcopy.presentation.chats.component.preview.ChatsUiPreviewParameterProvider
+import io.github.xlnk.telegramcopy.presentation.chats.component.preview.ChatsUiPagingDataParameterProvider
 import io.github.xlnk.telegramcopy.presentation.chats.model.ChatUi
 import io.github.xlnk.telegramcopy.presentation.common.component.CommonScreenComponent
 import io.github.xlnk.telegramcopy.presentation.common.extensions.showNotImplementedSnackbar
-import io.github.xlnk.telegramcopy.presentation.common.model.ImSnackbarVisuals
 import io.github.xlnk.telegramcopy.presentation.common.theme.AppTheme
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun ChatsScreen(
@@ -34,7 +31,7 @@ fun ChatsScreen(
 
     ChatsScreenContent(
         snackbarState = snackbarState,
-        chats = selfViewModel.chats.collectAsStateWithLifecycle().value,
+        chatsPagingItems = selfViewModel.chatsPagingItemsFlow,
         onGoToChatRequest = { onGoToChatRequest(it.id) },
         onSearchRequest = {
             snackbarState.showNotImplementedSnackbar(composeCoroutineScope)
@@ -46,7 +43,7 @@ fun ChatsScreen(
 @Composable
 private fun ChatsScreenContent(
     snackbarState: SnackbarHostState,
-    chats: ImmutableList<ChatUi>?,
+    chatsPagingItems: Flow<PagingData<ChatUi>>,
     onGoToChatRequest: (ChatUi) -> Unit,
     onSearchRequest: () -> Unit,
     onGoToNewMessageRequest: () -> Unit,
@@ -58,8 +55,8 @@ private fun ChatsScreenContent(
         modifier = modifier,
         floatingActionButton = { NewMessageFloatingButton(onGoToNewMessageRequest) }
     ) { paddingsModifier ->
-        ChatsListComponent(
-            chats = chats ?: persistentListOf(),
+        ChatsListPagingComponent(
+            chatsPagingItems = chatsPagingItems,
             onSelectChat = onGoToChatRequest,
             modifier = paddingsModifier,
         )
@@ -69,12 +66,12 @@ private fun ChatsScreenContent(
 @Preview
 @Composable
 private fun ChatsScreenContentPreview(
-    @PreviewParameter(ChatsUiPreviewParameterProvider::class) chats: ImmutableList<ChatUi>
+    @PreviewParameter(ChatsUiPagingDataParameterProvider::class) chats: Flow<PagingData<ChatUi>>
 ) {
     AppTheme {
         ChatsScreenContent(
             snackbarState = remember { SnackbarHostState() },
-            chats = chats,
+            chatsPagingItems = chats,
             {},
             {},
             {},
