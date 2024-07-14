@@ -29,8 +29,8 @@ fun UnreadCountComponent(
     val backgroundColor: Color
     val textColor: Color
     if (isHighlighted) {
-        backgroundColor = MaterialTheme.colorScheme.primary
-        textColor = MaterialTheme.colorScheme.onPrimary
+        backgroundColor = MaterialTheme.colorScheme.primaryContainer
+        textColor = MaterialTheme.colorScheme.onPrimaryContainer
     } else {
         backgroundColor = MaterialTheme.colorScheme.tertiary
         textColor = MaterialTheme.colorScheme.onTertiary

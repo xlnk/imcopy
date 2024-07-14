@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ImCopy</string>
+    <string name="app_name">Im Copy</string>
     <string name="sender_you_text">You</string>
     <string name="not_implemented_text">Not implemented</string>
     <string name="new_message_description_text">New message</string>

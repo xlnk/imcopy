@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeOff
 import androidx.compose.material.icons.filled.VolumeOff
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -21,5 +22,6 @@ fun ImMuteIndicator(
         imageVector = Icons.AutoMirrored.Filled.VolumeOff,
         contentDescription = stringResource(R.string.muted_description_text),
         modifier = modifier.size(size),
+        tint = MaterialTheme.colorScheme.tertiary
     )
 }

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,10 +42,18 @@ internal fun ChatItem(
     onSelect: (ChatUi) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    val background = if (chat.isPinned) {
+        MaterialTheme.colorScheme.surfaceVariant
+    } else {
+        MaterialTheme.colorScheme.surface
+    }
+
+    Surface(
         onClick = { onSelect(chat) },
         modifier = modifier.fillMaxWidth(),
         shape = RectangleShape,
+        color = background,
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
     ) {
         Row(
             modifier = Modifier
@@ -75,6 +84,7 @@ internal fun ChatItem(
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
                         modifier = Modifier.weight(1f),
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                     if (chat.muted) {
                         ImMuteIndicator(
@@ -106,7 +116,7 @@ internal fun ChatItem(
                         ImPinnedIndicator(20.sp.toDp())
                     }
                 }
-                HorizontalDivider()
+                HorizontalDivider(thickness = 0.5.dp)
             }
         }
     }
@@ -125,10 +135,16 @@ private fun ChatItemMessage(
             is Sender.Other -> sender.shortName
         }
         if (senderText != null) {
+            val senderColor = if (sender is Sender.Other) {
+                MaterialTheme.colorScheme.primary
+            } else {
+                MaterialTheme.colorScheme.onSurface
+            }
             Text(
                 text = "$senderText: ",
                 maxLines = 1,
                 style = MaterialTheme.typography.bodyMedium,
+                color = senderColor
             )
         }
         Text(
@@ -136,7 +152,8 @@ private fun ChatItemMessage(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }
