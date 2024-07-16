@@ -9,7 +9,7 @@ import io.github.xlnk.telegramcopy.domain.entity.model.DeliveryStatus
 import io.github.xlnk.telegramcopy.domain.entity.model.EntityId
 import io.github.xlnk.telegramcopy.presentation.chats.model.ChatUi
 import io.github.xlnk.telegramcopy.presentation.common.model.IconPlaceholderUi
-import io.github.xlnk.telegramcopy.presentation.common.model.Sender
+import io.github.xlnk.telegramcopy.domain.entity.model.Sender
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.Flow

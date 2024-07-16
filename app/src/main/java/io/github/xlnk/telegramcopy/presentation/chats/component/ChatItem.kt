@@ -28,7 +28,7 @@ import io.github.xlnk.telegramcopy.presentation.common.component.ImMuteIndicator
 import io.github.xlnk.telegramcopy.presentation.common.component.ImPinnedIndicator
 import io.github.xlnk.telegramcopy.presentation.common.component.UnreadCountComponent
 import io.github.xlnk.telegramcopy.presentation.common.extensions.toDp
-import io.github.xlnk.telegramcopy.presentation.common.model.Sender
+import io.github.xlnk.telegramcopy.domain.entity.model.Sender
 import io.github.xlnk.telegramcopy.presentation.common.theme.AppTheme
 
 @Composable

@@ -1,4 +1,4 @@
-package io.github.xlnk.telegramcopy.presentation.common.model
+package io.github.xlnk.telegramcopy.domain.entity.model
 
 sealed interface Sender {
 

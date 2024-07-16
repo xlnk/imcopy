@@ -10,12 +10,10 @@ import java.time.LocalDateTime
 
 @Entity(tableName = "chat_denormalized")
 data class ChatDenormalizedEntity(
-    @PrimaryKey val id: EntityId,
+    @PrimaryKey val id: String,
     val name: String,
     @ColumnInfo("placeholder_color")
-    val placeholderColor: ULong,
-    @ColumnInfo("placeholder_letters")
-    val placeholderLetters: String,
+    val placeholderColor: Long,
     @ColumnInfo(index = true)
     val pinned: Boolean,
     val muted: Boolean,
@@ -24,6 +22,6 @@ data class ChatDenormalizedEntity(
     val lastMessageUpdate: LocalDateTime,
     val lastMessageText: String,
     val lastSenderName: String,
-    val unreadMessagesCount: Int,
-    val iconId: IconId?,
+    val unreadMessagesCount: Int = 0,
+    val iconId: String? = null,
 )
