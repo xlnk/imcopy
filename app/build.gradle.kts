@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.androidx.room)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -80,6 +81,8 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     implementation(libs.hilt.core)
     implementation(libs.hilt.android)
+    implementation(libs.hiltx.navigation.compose)
+    kapt(libs.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

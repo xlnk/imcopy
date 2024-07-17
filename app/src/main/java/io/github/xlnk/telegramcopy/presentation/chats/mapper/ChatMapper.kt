@@ -2,8 +2,9 @@ package io.github.xlnk.telegramcopy.presentation.chats.mapper
 
 import io.github.xlnk.telegramcopy.domain.entity.model.ChatWithData
 import io.github.xlnk.telegramcopy.presentation.chats.model.ChatUi
+import javax.inject.Inject
 
-class ChatMapper(
+class ChatMapper @Inject constructor(
     private val iconPlaceholderMapper: IconPlaceholderMapper,
 ) {
 

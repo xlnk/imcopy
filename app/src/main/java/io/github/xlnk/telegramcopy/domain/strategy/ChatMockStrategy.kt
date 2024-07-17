@@ -7,5 +7,5 @@ interface ChatMockStrategy {
 
     fun provideChats(): List<ChatWithData>
 
-    fun provideLotsOfChats(count: Int): ImmutableList<ChatWithData>
+    fun provideLotsOfChats(count: Int): List<ChatWithData>
 }

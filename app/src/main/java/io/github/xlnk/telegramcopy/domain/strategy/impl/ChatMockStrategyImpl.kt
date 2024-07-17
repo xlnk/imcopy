@@ -6,15 +6,16 @@ import io.github.xlnk.telegramcopy.domain.entity.model.ChatWithData
 import io.github.xlnk.telegramcopy.domain.entity.model.EntityId
 import io.github.xlnk.telegramcopy.domain.entity.model.ImColor
 import io.github.xlnk.telegramcopy.domain.entity.model.Sender
+import io.github.xlnk.telegramcopy.domain.strategy.ChatMockStrategy
 import kotlinx.collections.immutable.ImmutableList
 import java.time.LocalDateTime
 import javax.inject.Inject
 
 class ChatMockStrategyImpl @Inject constructor(
     private val placeholderLettersStrategy: PlaceholderLettersStrategy,
-) {
+) : ChatMockStrategy {
 
-    fun provideChats(): List<ChatWithData> {
+    override fun provideChats(): List<ChatWithData> {
         return listOf(
             chatFirst,
             chatSecond,
@@ -27,11 +28,11 @@ class ChatMockStrategyImpl @Inject constructor(
         }
     }
 
-    fun provideLotsOfChats(count: Int): List<ChatWithData> {
+    override fun provideLotsOfChats(count: Int): List<ChatWithData> {
         val chats = provideChats()
         val mockCount = chats.size
         return List(count) {
-            val chat = chats[mockCount]
+            val chat = chats[it % mockCount]
             chat.copy(
                 id = EntityId(chat.id.value + " $it"),
                 name = "${chat.name} $it",

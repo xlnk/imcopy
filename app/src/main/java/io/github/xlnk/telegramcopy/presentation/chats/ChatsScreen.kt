@@ -7,6 +7,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.PagingData
 import io.github.xlnk.telegramcopy.domain.entity.model.EntityId
@@ -25,7 +26,7 @@ fun ChatsScreen(
     snackbarState: SnackbarHostState,
     onGoToChatRequest: (EntityId) -> Unit,
     onGoToNewMessageRequest: () -> Unit,
-    selfViewModel: ChatsScreenViewModel = viewModel()
+    selfViewModel: ChatsScreenViewModel = hiltViewModel()
 ) {
     val composeCoroutineScope = rememberCoroutineScope()
 
