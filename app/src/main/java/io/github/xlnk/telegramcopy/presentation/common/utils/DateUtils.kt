@@ -7,13 +7,10 @@ import java.util.Locale
 
 object DateUtils {
 
-    private var DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
-    private var TIME_FORMATTER = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-    private var WEEK_FORMATTER = DateTimeFormatter.ofPattern("EEE")
+    private val DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+    private val TIME_FORMATTER = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+    private val WEEK_FORMATTER = DateTimeFormatter.ofPattern("EEE")
 
-    private fun init() {
-
-    }
 
     fun humanizeDate(
         dateTime: LocalDateTime,
@@ -21,10 +18,17 @@ object DateUtils {
     ): String {
         return when {
             now.minusDays(1).isBefore(dateTime) -> {
-                TIME_FORMATTER.format(dateTime)
+//                TIME_FORMATTER.format(dateTime)
+                DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(dateTime)
             }
-            now.minusWeeks(1).isBefore(dateTime) -> WEEK_FORMATTER.format(dateTime)
-            else -> DATE_FORMATTER.format(dateTime)
+            now.minusWeeks(1).isBefore(dateTime) -> {
+//                WEEK_FORMATTER.format(dateTime)
+                DateTimeFormatter.ofPattern("EEE").format(dateTime)
+            }
+            else -> {
+//                DATE_FORMATTER.format(dateTime)
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(dateTime)
+            }
         }
     }
 }
