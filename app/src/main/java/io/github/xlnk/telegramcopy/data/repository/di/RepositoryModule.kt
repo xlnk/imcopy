@@ -1,4 +1,4 @@
-package io.github.xlnk.telegramcopy.data.di
+package io.github.xlnk.telegramcopy.data.repository.di
 
 import dagger.Binds
 import dagger.Module

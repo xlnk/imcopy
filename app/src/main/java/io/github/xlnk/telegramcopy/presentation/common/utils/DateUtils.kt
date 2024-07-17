@@ -7,19 +7,22 @@ import java.util.Locale
 
 object DateUtils {
 
-    private val DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
-    private val TIME_FORMATTER = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-    private val WEEK_FORMATTER = DateTimeFormatter.ofPattern("EEE")
+    private var DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+    private var TIME_FORMATTER = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+    private var WEEK_FORMATTER = DateTimeFormatter.ofPattern("EEE")
+
+    private fun init() {
+
+    }
 
     fun humanizeDate(
         dateTime: LocalDateTime,
         now: LocalDateTime = LocalDateTime.now(),
     ): String {
-        val startDay = now.toLocalDate().atStartOfDay()
-        val dayAgo = now.minusDays(1)
-        val weekAgo = now.minusWeeks(1)
         return when {
-            now.minusDays(1).isBefore(dateTime) -> TIME_FORMATTER.format(dateTime)
+            now.minusDays(1).isBefore(dateTime) -> {
+                TIME_FORMATTER.format(dateTime)
+            }
             now.minusWeeks(1).isBefore(dateTime) -> WEEK_FORMATTER.format(dateTime)
             else -> DATE_FORMATTER.format(dateTime)
         }

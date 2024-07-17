@@ -4,6 +4,7 @@ import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.xlnk.telegramcopy.domain.usecase.CreateMockChatsUseCase
@@ -52,4 +53,5 @@ class ChatsScreenViewModel @Inject constructor(
         .map { pagingData ->
             pagingData.map(chatMapper::toPresentation)
         }
+        .cachedIn(viewModelScope)
 }

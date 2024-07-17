@@ -4,21 +4,26 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import io.github.xlnk.telegramcopy.data.datasource.ChatDataSource
+import io.github.xlnk.telegramcopy.common.strategy.DispatcherProvider
+import io.github.xlnk.telegramcopy.data.repository.datasource.ChatWithDataDataSource
 import io.github.xlnk.telegramcopy.data.local.dao.ChatDenormalizedDao
 import io.github.xlnk.telegramcopy.data.local.mapper.ChatWithDataToLocalMapper
 import io.github.xlnk.telegramcopy.domain.entity.model.ChatWithData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ChatDataSourceByRoom @Inject constructor(
+class ChatWithDataDataSourceByRoom @Inject constructor(
     private val chatDenormalizedDao: ChatDenormalizedDao,
     private val chatWithDataToLocalMapper: ChatWithDataToLocalMapper,
-) : ChatDataSource {
+    private val dispatcherProvider: DispatcherProvider,
+) : ChatWithDataDataSource {
 
     override suspend fun saveChat(chat: ChatWithData) {
-        chatDenormalizedDao.save(chatWithDataToLocalMapper.toData(chat))
+        withContext(dispatcherProvider.io) {
+            chatDenormalizedDao.save(chatWithDataToLocalMapper.toData(chat))
+        }
     }
 
     override fun getChatsPagingData(): Flow<PagingData<ChatWithData>> =
@@ -33,7 +38,9 @@ class ChatDataSourceByRoom @Inject constructor(
                 pagingData.map(chatWithDataToLocalMapper::toDomain)
             }
 
-    override suspend fun countChats(): Int = chatDenormalizedDao.countChats()
+    override suspend fun countChats(): Int = withContext(dispatcherProvider.io) {
+        chatDenormalizedDao.countChats()
+    }
 
     companion object {
 
