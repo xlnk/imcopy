@@ -74,7 +74,7 @@ internal fun ChatItem(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = chat.title,
+                        text = chat.name,
                         style = MaterialTheme.typography.titleMedium,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
@@ -86,7 +86,7 @@ internal fun ChatItem(
                             modifier = Modifier.padding(start = 4.dp, end = 8.dp)
                         )
                     }
-                    ImDateComponent(chat.lastMessageUpdated,)
+                    ImDateComponent(chat.lastMessageUpdate,)
                 }
                 Row(
                     modifier = Modifier
@@ -96,8 +96,8 @@ internal fun ChatItem(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     ChatItemMessage(
-                        message = chat.lastMessage,
-                        sender = chat.lastMessageSender,
+                        message = chat.lastMessageText,
+                        sender = chat.lastSender,
                         modifier = Modifier.weight(1f)
                     )
                     if (chat.unreadMessagesCount > 0) {

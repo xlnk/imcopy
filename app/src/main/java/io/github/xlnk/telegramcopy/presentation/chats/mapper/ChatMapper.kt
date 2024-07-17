@@ -9,7 +9,7 @@ class ChatMapper(
 
     fun toPresentation(chat: ChatWithData): ChatUi = ChatUi(
         chat.id,
-        iconPlaceholderMapper.toPresentation(chat.placeholderColor, chat.placeholderLetters),
+        iconPlaceholderMapper.toPresentation(chat.iconPlaceholderColor, chat.iconPlaceholderLetters),
         null,
         chat.name,
         chat.lastMessageText,

@@ -51,7 +51,7 @@ private val chatThird = ChatUi(
     99999,
     LocalDateTime.now().minusDays(10),
     false,
-    lastMessageSender = Sender.You
+    lastSender = Sender.You
 )
 
 private val chatFourth = ChatUi(
@@ -64,7 +64,7 @@ private val chatFourth = ChatUi(
     0,
     LocalDateTime.now().minusMonths(14),
     true,
-    lastMessageSender = Sender.Other("User"),
+    lastSender = Sender.Other("User"),
     deliveryStatus = DeliveryStatus.Read,
 )
 

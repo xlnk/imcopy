@@ -11,12 +11,12 @@ data class ChatUi(
     val id: EntityId,
     val iconPlaceholder: IconPlaceholderUi,
     val icon: ImBitmapUi?,
-    val title: String,
-    val lastMessage: String,
+    val name: String,
+    val lastMessageText: String,
     val pinned: Boolean,
     val unreadMessagesCount: Int,
-    val lastMessageUpdated: LocalDateTime,
+    val lastMessageUpdate: LocalDateTime,
     val muted: Boolean,
-    val lastMessageSender: Sender = Sender.NotMatter,
+    val lastSender: Sender = Sender.NotMatter,
     val deliveryStatus: DeliveryStatus = DeliveryStatus.None
 )
