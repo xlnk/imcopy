@@ -18,4 +18,6 @@ class ChatWithDataRepositoryImpl @Inject constructor(
     override fun getChatsPagingData(): Flow<PagingData<ChatWithData>> {
         return chatDataSource.getChatsPagingData()
     }
+
+    override suspend fun countChats(): Int = chatDataSource.countChats()
 }

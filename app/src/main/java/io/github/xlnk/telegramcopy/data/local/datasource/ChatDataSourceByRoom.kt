@@ -33,9 +33,11 @@ class ChatDataSourceByRoom @Inject constructor(
                 pagingData.map(chatWithDataToLocalMapper::toDomain)
             }
 
+    override suspend fun countChats(): Int = chatDenormalizedDao.countChats()
+
     companion object {
 
-        private const val PAGING_PAGE_SIZE = 20
+        private const val PAGING_PAGE_SIZE = 15
         private const val PAGING_PREFETCH_DISTANCE = PAGING_PAGE_SIZE
         private const val PAGING_HELD_ITEMS = PAGING_PAGE_SIZE * 2 + PAGING_PREFETCH_DISTANCE * 2
         private const val PAGING_JUMP_THRESHOLD = PAGING_PAGE_SIZE * 3 + PAGING_PREFETCH_DISTANCE * 3

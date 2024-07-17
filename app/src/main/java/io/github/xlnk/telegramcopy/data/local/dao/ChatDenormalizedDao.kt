@@ -29,6 +29,9 @@ abstract class ChatDenormalizedDao {
     @Upsert
     abstract suspend fun save(chat: ChatDenormalizedEntity)
 
+    @Query("SELECT COUNT(id) FROM chat_denormalized")
+    abstract suspend fun countChats(): Int
+
 //    fun getChatsPagingData(): Flow<PagingData<ChatDenormalizedEntity>> {
 //        return Pager(
 //            config = PAGING_CONFIG,

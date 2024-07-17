@@ -8,4 +8,5 @@ interface ChatWithDataRepository {
 
     suspend fun saveChat(chat: ChatWithData)
     fun getChatsPagingData(): Flow<PagingData<ChatWithData>>
+    suspend fun countChats(): Int
 }
