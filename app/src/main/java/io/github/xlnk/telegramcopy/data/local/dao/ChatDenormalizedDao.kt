@@ -29,28 +29,14 @@ abstract class ChatDenormalizedDao {
     @Upsert
     abstract suspend fun save(chat: ChatDenormalizedEntity)
 
-    fun getChatsPagingData(): Flow<PagingData<ChatDenormalizedEntity>> {
-        return Pager(
-            config = PAGING_CONFIG,
-            pagingSourceFactory = {
-                getChatsPagingSource()
-            }
-        ).flow
-    }
+//    fun getChatsPagingData(): Flow<PagingData<ChatDenormalizedEntity>> {
+//        return Pager(
+//            config = PAGING_CONFIG,
+//            pagingSourceFactory = {
+//                getChatsPagingSource()
+//            }
+//        ).flow
+//    }
 
-    companion object {
 
-        private const val PAGING_PAGE_SIZE = 20
-        private const val PAGING_PREFETCH_DISTANCE = PAGING_PAGE_SIZE
-        private const val PAGING_HELD_ITEMS = PAGING_PAGE_SIZE * 2 + PAGING_PREFETCH_DISTANCE * 2
-        private const val PAGING_JUMP_THRESHOLD = PAGING_PAGE_SIZE * 3 + PAGING_PREFETCH_DISTANCE * 3
-
-        private val PAGING_CONFIG = PagingConfig(
-            pageSize = PAGING_PAGE_SIZE,
-            prefetchDistance = PAGING_PREFETCH_DISTANCE,
-            enablePlaceholders = true,
-            maxSize = PAGING_HELD_ITEMS,
-            jumpThreshold = PAGING_JUMP_THRESHOLD,
-        )
-    }
 }

@@ -22,6 +22,6 @@ data class ChatDenormalizedEntity(
     val lastMessageUpdate: LocalDateTime,
     val lastMessageText: String,
     val lastSender: String,
-    val unreadMessagesCount: Int = 0,
-    val iconId: String? = null,
+    val unreadMessagesCount: Int,
+    val iconId: String?,
 )

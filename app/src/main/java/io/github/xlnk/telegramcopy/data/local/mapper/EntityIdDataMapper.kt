@@ -6,4 +6,6 @@ import javax.inject.Inject
 class EntityIdDataMapper @Inject constructor() {
 
     fun toDomain(id: String) = EntityId(id)
+
+    fun toData(id: EntityId) = id.value
 }

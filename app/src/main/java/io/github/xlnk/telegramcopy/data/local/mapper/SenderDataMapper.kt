@@ -13,6 +13,12 @@ class SenderDataMapper @Inject constructor() {
         }
     }
 
+    fun toData(sender: Sender): String = when (sender) {
+        is Sender.You -> KEY_YOU
+        is Sender.NotMatter -> KEY_NOT_MATTER
+        is Sender.Other -> sender.shortName
+    }
+
     companion object {
 
         private const val KEY_YOU = "####KEY_YOU####"
